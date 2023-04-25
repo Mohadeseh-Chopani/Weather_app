@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="edit_text_hint" translatable="false">Enter City Name</string>
+    <string name="text_forecast" translatable="false">Todays Weather Forecast</string>
+    <string name="btn_prayer_time" translatable="false">Prayer Time</string>
+    <string name="condition" translatable="false">condition</string>
+    <string name="text_fajr" translatable="false">Fajr</string>
+    <string name="text_sunrise" translatable="false">Sunrise</string>
+    <string name="text_dhuhr" translatable="false">Dhuhr</string>
+    <string name="text_asr" translatable="false">Asr</string>
+    <string name="text_sunset" translatable="false">Sunset</string>
+    <string name="text_maghrib" translatable="false">Maghrib</string>
+    <string name="text_isha" translatable="false">Isha</string>
+    <string name="text_midnight" translatable="false">Midnight</string>
+    <string name="text_holiday" translatable="false">Holiday:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
