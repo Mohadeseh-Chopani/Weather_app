@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     LinearLayout layout_home;
     ProgressBar progressBar;
-    TextView city_name, text_temp, text_condition, text_header,countrycity,country,time;
+    TextView city_name, text_temp, text_condition, text_header,country,time;
     ImageView icon_search, icon_current, background;
     RecyclerView rv_forecast;
     public static EditText editText;
@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         country=findViewById(R.id.country);
-        countrycity=findViewById(R.id.citycountry);
         time=findViewById(R.id.time);
         btn_prayer=findViewById(R.id.btn_prayer_time);
         layout_home=findViewById(R.id.layout_home);
@@ -205,9 +204,9 @@ public class MainActivity extends AppCompatActivity {
                     String time_current=response.getJSONObject("location").getString("localtime");
                     time.setText(time_current.substring(11,time_current.length()));
                     String countryname = response.getJSONObject("location").getString("country");
-                    country.setText(countryname);
                     String city = response.getJSONObject("location").getString("name");
-                    countrycity.setText(city);
+                    country.setText(countryname+"/"+city);
+
 
                     if(is_day==1){
                         Picasso.get().load("https://www.uplooder.net/img/image/65/89a0aadcd294dc92e902c918ddfeb621/Screenshot-2023-03-14-231227.png").into(background);
@@ -217,7 +216,6 @@ public class MainActivity extends AppCompatActivity {
                         text_temp.setTextColor(Color.BLACK);
                         time.setTextColor(Color.BLACK);
                         country.setTextColor(Color.BLACK);
-                        countrycity.setTextColor(Color.BLACK);
                     }
                     else {
                         Picasso.get().load("https://www.uplooder.net/img/image/2/bb736957f4c8da553cc43e177538e817/Screenshot-2023-03-14-231524.png").into(background);
@@ -227,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
                         text_temp.setTextColor(Color.WHITE);
                         time.setTextColor(Color.WHITE);
                         country.setTextColor(Color.WHITE);
-                        countrycity.setTextColor(Color.WHITE);
                     }
 
                     JSONObject forecastobj=response.getJSONObject("forecast");
