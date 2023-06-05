@@ -2,6 +2,7 @@ package com.example.weather;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,7 +40,7 @@ public class Prayer_time extends Fragment {
     String city;
     String url;
     LinearLayout layout;
-    ProgressBar progressBar;
+    LottieAnimationView progressBar;
     ImageView background_prayer;
     boolean status = false;
 
@@ -89,6 +91,7 @@ public class Prayer_time extends Fragment {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         JsonObjectRequest objectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onResponse(JSONObject response) {
                 status = true;
@@ -128,8 +131,10 @@ public class Prayer_time extends Fragment {
 
                     if(MainActivity.is_day==1){
                         Picasso.get().load("https://www.uplooder.net/img/image/65/89a0aadcd294dc92e902c918ddfeb621/Screenshot-2023-03-14-231227.png").into(background_prayer);
+                        name.setTextColor(Color.BLACK);
                     }else {
                         Picasso.get().load("https://www.uplooder.net/img/image/2/bb736957f4c8da553cc43e177538e817/Screenshot-2023-03-14-231524.png").into(background_prayer);
+                        name.setTextColor(Color.WHITE);
                     }
 
                 } catch (JSONException e) {
@@ -139,7 +144,7 @@ public class Prayer_time extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "please enter valid city name ...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), R.string.text_error_response, Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(objectRequest);

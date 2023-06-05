@@ -40,11 +40,6 @@ public class WeaderAdapter extends RecyclerView.Adapter<WeaderAdapter.WeatherVie
         holder.text_speed.setText(data.getWind_speed()+"Km/h");
         holder.text_time.setText(data.getTime().substring(11,data.getTime().length()));
 
-//        SimpleDateFormat input=new SimpleDateFormat("YYYY-MM-DD  hh:mm" );
-//        SimpleDateFormat output=new SimpleDateFormat("hh:mm aa" );
-//
-//            Date t=input.parse(data.getTime());
-//            holder.text_time.setText(output.format((Objects.requireNonNull(t))));
 
     }
 

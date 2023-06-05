@@ -13,6 +13,11 @@
     <string name="text_isha" translatable="false">Isha</string>
     <string name="text_midnight" translatable="false">Midnight</string>
     <string name="text_holiday" translatable="false">Holiday:</string>
+    <string name="text_error_response">Please check access to Internet</string>
+    <string name="text_city_found">City not found</string>
+    <string name="text_permission_granted">Permission granted</string>
+    <string name="text_permission_not_granted">Please accept the permission</string>
+    <string name="text_city_name_empty">City name is empty</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

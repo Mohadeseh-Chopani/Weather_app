@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -53,7 +54,8 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     LinearLayout layout_home;
-    ProgressBar progressBar;
+
+    LottieAnimationView progressBar;
     TextView city_name, text_temp, text_condition, text_header,country,time;
     ImageView icon_search, icon_current, background;
     RecyclerView rv_forecast;
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         time=findViewById(R.id.time);
         btn_prayer=findViewById(R.id.btn_prayer_time);
         layout_home=findViewById(R.id.layout_home);
-        progressBar=findViewById(R.id.loading);
+        progressBar=findViewById(R.id.progress_bar);
         city_name=findViewById(R.id.name_city);
         text_temp=findViewById(R.id.text_temp);
         text_condition=findViewById(R.id.text_condition);
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String city=editText.getText().toString().trim();
                 if(city.isEmpty()){
-                    Toast.makeText(MainActivity.this,"name city is empty",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,R.string.text_city_name_empty,Toast.LENGTH_SHORT).show();
                 }
                 else {
                     city_name.setText(cityname);
@@ -147,10 +149,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(requestCode == PERMISION_COOE){
             if(permissions.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(MainActivity.this,"permission granted",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,R.string.text_permission_granted,Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(MainActivity.this,"please accept the permission",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,R.string.text_permission_not_granted,Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -169,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         Log.d("TAG","city not found");
-                        Toast.makeText(this,"city not found",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,R.string.text_city_found,Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -178,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return cityname;
     }
-
 
     private void getWeaderinfo(String cityname){
         String url="https://api.weatherapi.com/v1/forecast.json?key=2e549cf3abfc4551acb200656232301&q="+cityname+"&days=1&aqi=yes&alerts=yes";
@@ -249,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MainActivity.this,"please enter valid city name ...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,R.string.text_error_response, Toast.LENGTH_SHORT).show();
             }
         });
         requestQueue.add(jsonObjectRequest);

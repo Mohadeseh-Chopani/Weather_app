@@ -4,17 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/prayer"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".Prayer_time">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/load"
-        android:layout_gravity="center"
-        android:layout_centerInParent="true"
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/animation"
         android:visibility="visible"
-        tools:ignore="ObsoleteLayoutParam" />
+        android:id="@+id/load"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -66,7 +67,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
-                    app:tint="@color/black"
+                    app:tint="#878686"
                     tools:ignore="MissingConstraints" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -74,11 +75,11 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="350dp"
                 android:layout_height="150dp"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                app:cardElevation="5dp"
+                app:cardElevation="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints">
@@ -97,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/data_Ad"
                         android:layout_marginStart="30dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -106,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/month_Ad"
                         android:layout_marginStart="30dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -115,7 +116,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/day_Ad"
                         android:layout_marginStart="28dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -131,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/data_Lunar"
                         android:layout_marginStart="30dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -140,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/month_Lunar"
                         android:layout_marginStart="30dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -149,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/day_Lunar"
                         android:layout_marginStart="30dp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="19sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -160,9 +161,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="35dp">
 
                 <TextView
@@ -171,7 +172,7 @@
                     android:text="@string/text_fajr"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -181,7 +182,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_fajr"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -190,9 +191,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -201,7 +202,7 @@
                     android:text="@string/text_sunrise"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -211,7 +212,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_sunrise"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -220,9 +221,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -231,7 +232,7 @@
                     android:text="@string/text_dhuhr"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -241,7 +242,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_dhuhr"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -250,9 +251,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -261,7 +262,7 @@
                     android:text="@string/text_asr"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -271,7 +272,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_asr"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -281,9 +282,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -292,7 +293,7 @@
                     android:text="@string/text_sunset"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -302,7 +303,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_sunset"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -311,9 +312,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -322,7 +323,7 @@
                     android:text="@string/text_maghrib"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -332,7 +333,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_maghrib"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -341,9 +342,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -352,7 +353,7 @@
                     android:text="@string/text_isha"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -362,7 +363,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_isha"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -371,9 +372,9 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -382,7 +383,7 @@
                     android:text="@string/text_midnight"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -392,7 +393,7 @@
                     android:layout_marginTop="6dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/time_midnight"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="270dp"/>
 
             </androidx.cardview.widget.CardView>
@@ -401,10 +402,10 @@
                 android:layout_width="350dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="@color/black"
+                app:cardBackgroundColor="#A6EEEEEE"
                 android:layout_marginBottom="50dp"
                 app:cardCornerRadius="20dp"
-                app:cardMaxElevation="5dp"
+                app:cardElevation="10dp"
                 android:layout_marginTop="18dp">
 
                 <TextView
@@ -413,7 +414,7 @@
                     android:text="@string/text_holiday"
                     android:textSize="25sp"
                     android:layout_gravity="center_vertical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="20dp"/>
 
                 <TextView
@@ -423,7 +424,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_gravity="center_vertical"
                     android:id="@+id/holiday"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:layout_marginStart="130dp"/>
 
             </androidx.cardview.widget.CardView>
