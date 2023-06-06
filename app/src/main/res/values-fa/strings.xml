@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">آب هوا</string>
+    <string name="edit_text_hint" translatable="false">نام را وارد کنید</string>
+    <string name="text_forecast" translatable="false">پیش بینی آب هوای امروز</string>
+    <string name="btn_prayer_time" translatable="false">تایم نماز</string>
+    <string name="condition" translatable="false">وضعیت</string>
+    <string name="text_fajr" translatable="false">صبح</string>
+    <string name="text_sunrise" translatable="false">طلوع خورشید</string>
+    <string name="text_dhuhr" translatable="false">ظهر</string>
+    <string name="text_asr" translatable="false">عصر</string>
+    <string name="text_sunset" translatable="false">غروب خورشید</string>
+    <string name="text_maghrib" translatable="false">مغرب</string>
+    <string name="text_isha" translatable="false">عشاء</string>
+    <string name="text_midnight" translatable="false">نیمه شب</string>
+    <string name="text_holiday" translatable="false">تعطیلات:</string>
+    <string name="text_error_response">لطفا دسترسی به اینترنت را چک کنید</string>
+    <string name="text_city_found">شهر پیدا نشد</string>
+    <string name="text_permission_granted">مجوز داده شد</string>
+    <string name="text_permission_not_granted">لطفا مجوز مورد نظر را بدهید</string>
+    <string name="text_city_name_empty">نام شهر خالی است</string>
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>
