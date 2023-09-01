@@ -3,12 +3,17 @@ package com.example.weather;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Address;
@@ -25,11 +30,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,7 +43,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.weather.Adapter.WeaderAdapter;
 import com.example.weather.Models.DataForecast;
-import com.google.android.gms.location.LocationListener;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<DataForecast> dataForecasts;
     WeaderAdapter adapter;
     LocationManager locationManager;
-    int PERMISION_COOE = 1;
+    int PERMISION_CODE = 1;
     public static String cityname;
     Button btn_prayer;
     public static int is_day;
@@ -96,11 +100,13 @@ public class MainActivity extends AppCompatActivity {
         adapter=new WeaderAdapter(this,dataForecasts);
         rv_forecast.setAdapter(adapter);
 
+
         locationManager=(LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
         if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this,android.Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
 
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_COARSE_LOCATION},PERMISION_COOE);
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_COARSE_LOCATION},PERMISION_CODE);
         }
 
 
@@ -109,19 +115,16 @@ public class MainActivity extends AppCompatActivity {
         if(location!=null){
             cityname=getcityname(location.getLatitude(),location.getLongitude());
         }
+        else
+            Toast.makeText(this, "You should tern on location in your phone", Toast.LENGTH_SHORT).show();
+
+
 
 
         ConnectivityManager cManager = (ConnectivityManager) getSystemService(this.CONNECTIVITY_SERVICE);
         NetworkInfo ninfo = cManager.getActiveNetworkInfo();
-        if(ninfo!=null && ninfo.isConnected())
-
-        {
-            Toast.makeText(this, "Available",Toast.LENGTH_LONG).show();
-        }
-
-        else
-        {
-            Toast.makeText(this, "Not Available",Toast.LENGTH_LONG).show();
+        if(!(ninfo!=null && ninfo.isConnected())) {
+            Toast.makeText(this, "Not Available", Toast.LENGTH_LONG).show();
         }
 
 
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == PERMISION_COOE){
+        if(requestCode == PERMISION_CODE){
             if(permissions.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
                 Toast.makeText(MainActivity.this,R.string.text_permission_granted,Toast.LENGTH_SHORT).show();
             }
@@ -165,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             List<Address>addresses=geocoder.getFromLocation(latitude,longitude,10);
             for (Address address : addresses){
                 if(address!=null){
-                    String city=address.getCountryName();
+                    String city=address.getLocality();
                     if(city!=null && !city.equals("")){
                         cityname=city;
                     }
@@ -181,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         return cityname;
     }
 
+
     private void getWeaderinfo(String cityname){
         String url="https://api.weatherapi.com/v1/forecast.json?key=2e549cf3abfc4551acb200656232301&q="+cityname+"&days=1&aqi=yes&alerts=yes";
 
@@ -195,7 +199,8 @@ public class MainActivity extends AppCompatActivity {
                 layout_home.setVisibility(View.VISIBLE);
                 dataForecasts.clear();
                 try {
-                    String temperature=response.getJSONObject("current").getString("temp_c");
+                    String temperature;
+                    temperature=response.getJSONObject("current").getString("temp_c");
                     text_temp.setText(temperature+"C°");
                     String condition=response.getJSONObject("current").getJSONObject("condition").getString("text");
                     String condotion_icon=response.getJSONObject("current").getJSONObject("condition").getString("icon");
@@ -207,6 +212,12 @@ public class MainActivity extends AppCompatActivity {
                     String countryname = response.getJSONObject("location").getString("country");
                     String city = response.getJSONObject("location").getString("name");
                     country.setText(countryname+"/"+city);
+
+                    int heat;
+                    String n=response.getJSONObject("current").getString("temp_c");
+//                    heat= Integer.parseInt((response.getJSONObject("current").getString("temp_c")));
+//                        if(30 <= heat)
+                    set_notification(cityname,countryname,city,response.getJSONObject("current").getString("temp_c"));
 
 
                     if(is_day==1){
@@ -253,7 +264,10 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,R.string.text_error_response, Toast.LENGTH_SHORT).show();
             }
         });
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(10000,2,1));
         requestQueue.add(jsonObjectRequest);
+
+
 
         btn_prayer.setOnClickListener(new View.OnClickListener() {
 
@@ -271,5 +285,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void set_notification(String main_city, String main_country, String chosen_city, String temperature){
+
+        String contentTitle=temperature +"  "+main_country+"/"+main_city;
+        if(Objects.equals(main_city, chosen_city)){
+            NotificationManager manager= (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            Intent intent=new Intent(MainActivity.this,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent=PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+            @SuppressLint("ResourceAsColor")
+            Notification notification=new NotificationCompat.Builder(this,"temperature_notification")
+                    .setSmallIcon(R.drawable.icon_app)
+                    .setContentTitle("Meteorological")
+                    .setContentText(contentTitle)
+                    .setContentIntent(pendingIntent)
+                    .build();
+
+            manager.notify(1001,notification);
+        }
     }
 }

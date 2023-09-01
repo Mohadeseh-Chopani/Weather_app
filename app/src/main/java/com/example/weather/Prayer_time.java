@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -147,7 +148,9 @@ public class Prayer_time extends Fragment {
                 Toast.makeText(getActivity(), R.string.text_error_response, Toast.LENGTH_SHORT).show();
             }
         });
+        objectRequest.setRetryPolicy(new DefaultRetryPolicy(5000,2,1));
         requestQueue.add(objectRequest);
+
         return view;
     }
 }

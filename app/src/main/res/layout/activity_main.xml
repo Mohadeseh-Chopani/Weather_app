@@ -166,7 +166,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="68dp"
                 android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="MissingClass" />
 
             <Button
                 android:id="@+id/btn_prayer_time"
